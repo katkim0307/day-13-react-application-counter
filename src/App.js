@@ -5,6 +5,7 @@ class Counter extends Component {
     super();
     this.state = {
       count: 0,
+      incrementBy: 'Single Increment',
     };
     // TRADITIONAL WAY OF BINDING BEFORE DECLARING A NEW METHOD
     // this.increment = this.increment.bind(this);
@@ -14,29 +15,41 @@ class Counter extends Component {
 
   increment = () => {
     // .setState is a built in method
+    let count = this.state.count;
+    if(count===20){return;}
     this.setState ({
-      count: this.state.count+1
+      count: count+1
     })
   }
 
   decrement = () => {
+    let count = this.state.count;
+    if(count===0){return;}
     this.setState ({
-      count: this.state.count-1
+      count: count-1
     })
   }
+
+  clear = () => {
+    this.setState ({
+      count: 0
+    })
+  }
+
 
   render() {
     return (
       // parent div block for 
       // 1. Counter.js nav bar
       // 2. counter # display using JS code: {this.state.count}
-      // 3. buttons (increment, decrement)
+      // 3. buttons (increment, decrement, clear, toggle between single/double)
       <div className = "container">
         <div className="navbar">Counter.js</div>
         <div className="counter">
           <h1>{this.state.count}</h1>
           <button type="button" onClick={this.increment}>Increment</button>
           <button type="button" onClick={this.decrement}>Decrement</button>
+          <button type="button" onClick={this.clear}>Clear</button>
         </div>
       </div>
       );
