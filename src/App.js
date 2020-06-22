@@ -6,7 +6,24 @@ class Counter extends Component {
     this.state = {
       count: 0,
     };
+    // TRADITIONAL WAY OF BINDING BEFORE DECLARING A NEW METHOD
+    // this.increment = this.increment.bind(this);
   };
+
+  // DECLARE METHODS
+
+  increment = () => {
+    // .setState is a built in method
+    this.setState ({
+      count: this.state.count+1
+    })
+  }
+
+  decrement = () => {
+    this.setState ({
+      count: this.state.count-1
+    })
+  }
 
   render() {
     return (
@@ -18,8 +35,8 @@ class Counter extends Component {
         <div className="navbar">Counter.js</div>
         <div className="counter">
           <h1>{this.state.count}</h1>
-          <button type="button">Increment</button>
-          <button type="button">Decrement</button>
+          <button type="button" onClick={this.increment}>Increment</button>
+          <button type="button" onClick={this.decrement}>Decrement</button>
         </div>
       </div>
       );
