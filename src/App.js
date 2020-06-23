@@ -5,7 +5,7 @@ class Counter extends Component {
     super();
     this.state = {
       count: 0,
-      incrementBy: 'Single Increment',
+      doubleOn: false,
     };
     // TRADITIONAL WAY OF BINDING BEFORE DECLARING A NEW METHOD
     // this.increment = this.increment.bind(this);
@@ -14,20 +14,20 @@ class Counter extends Component {
   // DECLARE METHODS
 
   increment = () => {
-    // .setState is a built in method
     let count = this.state.count;
-    if(count===20){return;}
-    this.setState ({
-      count: count+1
-    })
+    let doubleOn = this.state.doubleOn;
+
+    if(count>=20){return;}
+    doubleOn ? this.setState({count: count+2}) : this.setState ({count: count+1})
   }
 
   decrement = () => {
     let count = this.state.count;
-    if(count===0){return;}
-    this.setState ({
-      count: count-1
-    })
+    let doubleOn = this.state.doubleOn;
+
+    if(count<=0){return;}
+
+    doubleOn ? this.setState({count: count-2}) : this.setState ({count: count-1})
   }
 
   clear = () => {
@@ -36,8 +36,15 @@ class Counter extends Component {
     })
   }
 
+  toggleFunc = () => {
+    this.setState ({
+      doubleOn: !this.state.doubleOn
+    })
+  }
 
   render() {
+    let doubleOn = this.state.doubleOn;
+
     return (
       // parent div block for 
       // 1. Counter.js nav bar
@@ -50,6 +57,7 @@ class Counter extends Component {
           <button type="button" onClick={this.increment}>Increment</button>
           <button type="button" onClick={this.decrement}>Decrement</button>
           <button type="button" onClick={this.clear}>Clear</button>
+          <button type="button" onClick={this.toggleFunc}>{doubleOn ? 'Double': 'Single'}</button>
         </div>
       </div>
       );
