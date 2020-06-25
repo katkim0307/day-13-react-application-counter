@@ -17,17 +17,32 @@ class Counter extends Component {
     let count = this.state.count;
     let doubleOn = this.state.doubleOn;
 
-    if(count>=20){return;}
-    doubleOn ? this.setState({count: count+2}) : this.setState ({count: count+1})
+    // if(count<20) {
+    //   doubleOn ? this.setState({count: count+2}) : this.setState ({count: count+1})
+    // }
+
+    if(doubleOn && count<19){
+      this.setState({count: count+2})
+    }
+    else if(!doubleOn && count<20){
+      this.setState({count: count+1})
+    }
   }
 
   decrement = () => {
     let count = this.state.count;
     let doubleOn = this.state.doubleOn;
 
-    if(count<=0){return;}
+    // if(count>0){
+    //   doubleOn ? this.setState({count: count-2}) : this.setState ({count: count-1})
+    // }
 
-    doubleOn ? this.setState({count: count-2}) : this.setState ({count: count-1})
+    if(doubleOn && count>1){
+      this.setState({count: count-2})
+    }
+    else if(!doubleOn && count>0){
+      this.setState({count: count-1})
+    }
   }
 
   clear = () => {
@@ -65,46 +80,3 @@ class Counter extends Component {
 };
 
 export default Counter;
-
-/* 
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
-
-export default App;
-*/
-
-/*
-import React, {Component} from 'react';
-
-class HelloWorld extends Component {
-  render() {
-    return(
-      <div>Hello World</div>
-    );
-  };
-};
-
-export default HelloWorld;
-*/
